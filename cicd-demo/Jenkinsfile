@@ -1,31 +1,38 @@
 pipeline {
-    agent any
+agent any
 
-    stages {
+stages {
 
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
+    stage('Checkout') {
+        steps {
+            checkout scm
         }
+    }
 
-        stage('Test') {
-            steps {
+    stage('Test') {
+        steps {
+            dir('cicd-demo') {
                 sh 'npm install'
                 sh 'npm test'
             }
         }
+    }
 
-        stage('Docker Build') {
-            steps {
+    stage('Docker Build') {
+        steps {
+            dir('cicd-demo') {
                 sh 'docker build -t cicd-demo:v1 .'
             }
         }
+    }
 
-        stage('Deploy') {
-            steps {
+    stage('Deploy') {
+        steps {
+            dir('cicd-demo') {
                 sh 'kubectl apply -f k8s/'
             }
         }
     }
+}
+
 }
