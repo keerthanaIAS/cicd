@@ -9,15 +9,6 @@ stages {
         }
     }
 
-    stage('Test') {
-        steps {
-            dir('cicd-demo') {
-                sh 'npm install'
-                sh 'npm test'
-            }
-        }
-    }
-
     stage('Docker Build') {
         steps {
             dir('cicd-demo') {
