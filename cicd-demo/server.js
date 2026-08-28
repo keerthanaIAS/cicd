@@ -7,7 +7,7 @@ const server = http.createServer((req, res) => {
     "Content-Type": "text/plain",
   });
 
-  res.end("Hello from CI/CD v1\n");
+  res.end("Hello from CI/CD v2\n");
 });
 
 server.listen(PORT, () => {
